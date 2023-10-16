@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Speech Synthesis</title>
+  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="xyz.css">
+</head>
+<body>
+
+    <div class="voiceinator">
+
+      <h1>The Voiceinator 5000</h1>
+
+      <select name="voice" id="voices">
+        <option value="">Select A Voice</option>
+      </select>
+
+      <label for="rate">Rate:</label>
+      <input name="rate" type="range" min="0" max="3" value="1" step="0.1">
+
+      <label for="pitch">Pitch:</label>
+
+      <input id="pitch" name="pitch" type="range" min="0" max="2" step="0.1">
+      <textarea name="text">Hello! I love JavaScript 👍</textarea>
+      <button id="stop">Stop!</button>
+      <button id="speak">Speak</button>
+
+    </div>
+
+<script>
+  const msg = new SpeechSynthesisUtterance();
+  let voices = [];
+  const voicesDropdown = document.querySelector('[name="voice"]');
+  const textArea = document.querySelector('[name="text"]');
+  const speakButton = document.querySelector('#speak');
+  const stopButton = document.querySelector('#stop');
+  const pitchInp = document.getElementById('pitch');
+  const rateInp = document.getElementById('pitch');
+
+  //Your code goes here
+  
+// Add an event listener to the speak button
+ speakButton.addEventListener("click", function() {
+  // Get the text from the text area
+  let text = textArea.value;
+
+  // Create a new SpeechSynthesisUtterance object
+  let utterance = new SpeechSynthesisUtterance();
+
+  // Set the text and voice of the utterance
+  utterance.text = text;
+  utterance.voice = window.speechSynthesis.getVoices()[10];
+
+  // Speak the utterance
+  window.speechSynthesis.speak(utterance);
+});
+
+</script>
+
+</body>
+</html>
